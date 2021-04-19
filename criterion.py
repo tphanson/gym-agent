@@ -1,7 +1,7 @@
 import ray
 import numpy as np
 
-from env import OhmniInSpace
+from env import CartPole
 from agent import network
 
 ray.init()
@@ -12,7 +12,7 @@ ONE_GIGABYTES = 1024 * 1024 * 1024
 @ray.remote(memory=2 * ONE_GIGABYTES)
 class EvalActor(object):
     def __init__(self):
-        self.env = OhmniInSpace.env()
+        self.env = CartPole.env()
         for pyenv in self.env.envs:
             self.max_steps = pyenv.max_steps
             break

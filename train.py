@@ -10,7 +10,7 @@ from helper.utils import parse_experiences
 
 
 # Environment
-train_env = CartPole.env(gui=True)
+train_env = CartPole.env(gui=False)
 
 # Agent
 agent = network.Network(
