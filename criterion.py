@@ -13,9 +13,6 @@ ONE_GIGABYTES = 1024 * 1024 * 1024
 class EvalActor(object):
     def __init__(self):
         self.env = CartPole.env()
-        for pyenv in self.env.envs:
-            self.max_steps = pyenv.max_steps
-            break
         self.agent = network.Network(
             time_step_spec=self.env.time_step_spec(),
             observation_spec=self.env.observation_spec(),
@@ -25,16 +22,13 @@ class EvalActor(object):
 
     def eval(self):
         time_step = self.env.reset()
-        steps = self.max_steps
         episode_return = 0.0
         state = self.agent.get_initial_state()
         while not time_step.is_last():
-            steps -= 1
             policy_step = self.agent.action(time_step, state)
             action, state, _ = policy_step
             time_step = self.env.step(action)
             episode_return += time_step.reward
-        episode_return += time_step.reward * steps
         return episode_return.numpy()[0]
 
 
