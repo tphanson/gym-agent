@@ -31,8 +31,8 @@ class Network():
         self._num_of_actions = self.action_spec.maximum - self.action_spec.minimum + 1
         # Distributional Learning (C51)
         self._num_of_atoms = 51
-        self._min_q_value = -10
-        self._max_q_value = 10
+        self._min_q_value = 0
+        self._max_q_value = 100
         self._supports = tf.linspace(
             tf.constant(self._min_q_value, dtype=tf.float32),
             tf.constant(self._max_q_value, dtype=tf.float32),

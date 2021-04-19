@@ -1,6 +1,6 @@
 import tensorflow as tf
 
-from env import OhmniInSpace
+from env import CartPole
 from agent import network
 
 # Config GPU
@@ -9,7 +9,7 @@ print("Num GPUs Available: ", len(gpus))
 tf.config.experimental.set_visible_devices(gpus[0], 'GPU')
 
 # Environment
-env = OhmniInSpace.env(gui=True)
+env = CartPole.env(gui=True)
 
 # Agent
 agent = network.Network(
